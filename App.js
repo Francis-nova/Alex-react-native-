@@ -7,6 +7,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from './src/componets/home';
 import FormsScreen from './src/componets/Forms';
 import UsersScreen from './src/componets/users';
+import Dashboard from './src/componets/dashboard';
 
 
 const AppNavigator = createStackNavigator({
@@ -16,7 +17,8 @@ const AppNavigator = createStackNavigator({
   Users: {
     screen: UsersScreen,
   },
-  FormsScreen: FormsScreen
+  FormsScreen: FormsScreen,
+  Dashboard: Dashboard
 });
 
 export default createAppContainer(AppNavigator);
