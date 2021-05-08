@@ -8,6 +8,7 @@ import HomeScreen from './src/componets/home';
 import FormsScreen from './src/componets/Forms';
 import UsersScreen from './src/componets/users';
 import Dashboard from './src/componets/dashboard';
+import Profile from './src/componets/Profile';
 
 
 const AppNavigator = createStackNavigator({
@@ -18,7 +19,8 @@ const AppNavigator = createStackNavigator({
     screen: UsersScreen,
   },
   FormsScreen: FormsScreen,
-  Dashboard: Dashboard
+  Dashboard: Dashboard,
+  Profile: Profile
 });
 
 export default createAppContainer(AppNavigator);
