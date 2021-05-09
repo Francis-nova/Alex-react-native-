@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     balanceAmount: {
         fontSize: 30,
-        color: '#fff'
+        color: '#fff',
     },
     edit: {
         backgroundColor: '#fff',
