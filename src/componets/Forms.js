@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 20,
         color: '#fff',
-        fontWeight: 100,
+        fontWeight: "100",
     },
     formField: {
         marginTop: 40,
