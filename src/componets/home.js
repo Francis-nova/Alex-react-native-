@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import MyCarousel from './MyCarousel';
+
 
 const image = {uri: 'https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80'}
 
@@ -12,24 +14,23 @@ class HomeScreen extends React.Component {
         }
     }
 
-    componentDidMount() {
-        console.log("name: ", this.state.name)
-    }
-
     render() {
         return (
 
             <View style={styles.container}>
-                <ImageBackground source={image} style={styles.image}>
+                {/* <ImageBackground source={image} style={styles.image}>
                     <Text style={styles.header}>Welcome</Text>
                     <Text style={styles.caption}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, doloribus.</Text>
                     <TouchableOpacity
+                        activeOpacity={0.5}
                         style={styles.formsButton}
-                        onPress={() => this.props.navigation.navigate('FormsScreen')}>
-                        <Text>Register</Text>
+                        onPress={() => this.props.navigation.navigate('Form')}>
+                        <Text style={styles.buttonText}>Register</Text>
                     </TouchableOpacity>
 
-                </ImageBackground>
+                </ImageBackground> */}
+
+                <MyCarousel></MyCarousel>
             </View>
         );
     }
@@ -38,17 +39,11 @@ class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
     formsButton: {
         backgroundColor: "#ed4a75",
-        paddingHorizontal: 35,
-        paddingVertical: 15,
         borderRadius: 5,
-        width: '40%',
-        textAlign: 'center',
-        marginVertical: 20,
-        marginHorizontal: 'auto'
+        width: 200
     },
     container: {
         flex: 1,
-        flexDirection: 'column'
     },
     header: {
         fontSize: 40,
@@ -60,12 +55,22 @@ const styles = StyleSheet.create({
     caption: {
         fontSize: 14,
         textAlign: 'center',
-        color: '#fff'
+        color: '#dadcde',
+        marginBottom: 10
     },
     image: {
         flex: 1,
         resizeMode: 'cover',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        padding: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    buttonText: {
+        textAlign: 'center',
+        paddingHorizontal: 30,
+        paddingVertical: 15,
+        color: '#fff'
     }
 });
 

@@ -57,7 +57,7 @@ class Dashboard extends React.Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#ed4a75',
-        flex: 1
+        // flex: 1
     },
     header: {
         borderBottomWidth: 1,
@@ -101,12 +101,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#f0e8e8',
         borderRadius: 10,
         padding: 20,
-        margin: 20
+        margin: 20,
+        marginTop: 50,
     },
     cardDetail: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 30
+        marginBottom: 80
     },
     cardBalance: {
         color: '#b6b4b4',
