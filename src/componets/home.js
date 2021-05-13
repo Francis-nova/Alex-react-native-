@@ -25,10 +25,10 @@ import img3 from '../img/img3.jpg'
         width: '100%',
         height: '100%',
       }} level={20}>
-        <TouchableOpacity style={styles.login} onPress={() => navigation.navigate("Login")}>
+        <TouchableOpacity activeOpacity={0.5} style={styles.login} onPress={() => navigation.navigate("Login")}>
           <Text style={styles.loginText}>Login <AntDesign name="arrowright" color='black' size={20}></AntDesign> </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.register} onPress={() => navigation.navigate("Form")}>
+        <TouchableOpacity activeOpacity={0.5} style={styles.register} onPress={() => navigation.navigate("Form")}>
           <Text style={styles.registerText}>Register <AntDesign name="arrowright" color='white' size={20}></AntDesign> </Text>
         </TouchableOpacity>
         <AppIntro showSkipButton={false} showDoneButton={false} activeDotColor="#4bd1d7">
