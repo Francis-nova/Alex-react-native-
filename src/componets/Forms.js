@@ -79,7 +79,7 @@ const FormsScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#ed4a75',
+        backgroundColor: '#4bd1d7',
         color: '#fff',
         padding: 40,
         flex: 1
