@@ -1,7 +1,12 @@
 import React, { useLayoutEffect, useState } from 'react';
 import {  View, Text, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from 'react-native';
-import { Input } from 'react-native-elements';
+import { Input, Switch } from 'react-native-elements';
 import {AntDesign, Ionicons, MaterialIcons} from '@expo/vector-icons';
+import { TouchableWithoutFeedback } from 'react-native';
+import { Keyboard } from 'react-native';
+import { Platform } from 'react-native';
+import { SafeAreaView } from 'react-native';
+import { color } from 'react-native-reanimated';
 
 const FormsScreen = ({navigation}) => {
     useLayoutEffect(() => {
@@ -22,6 +27,7 @@ const FormsScreen = ({navigation}) => {
     const [city, setcity] = useState('');
     const [state, setstate] = useState('');
     const [phoneNumber, setphoneNumber] = useState('');
+    const [terms, setterms] = useState(false)
 
 
 
@@ -71,271 +77,255 @@ const FormsScreen = ({navigation}) => {
     }
     
     return (
-        <KeyboardAvoidingView behavior="padding" style={styles.container}>
-            {personalDetails 
-            
-            && 
-            
-            <View>
+        <SafeAreaView  style={styles.container}>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+              
+                {personalDetails 
+                
+                && 
+                
+                <View>
+                    
+                    <Text style={styles.header}>{'Personal Details'.toUpperCase()}</Text>
+                    <View style={styles.formField}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
+                            <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
+                            <Input 
+                                style={styles.input} 
+                                type="text"
+                                value={lastName} 
+                                placeholder="Last Name"
+                                placeholderTextColor="#fff"
+                                placeholderStyle={{fontSize: 10}}
+                                onChangeText={(val) => setlastName(val)}>
+                            </Input>
+                        </View>
+                    </View>
 
-                <Text style={styles.header}>{'Personal Details'.toUpperCase()}</Text>
-                <View style={styles.formField}>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
-                        <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
-                        <Input 
-                            style={styles.input} 
-                            type="text"
-                            value={lastName} 
-                            placeholder="Last Name"
-                            placeholderTextColor="#fff"
-                            placeholderStyle={{fontSize: 10}}
-                            onChangeText={(val) => setlastName(val)}>
-                        </Input>
+                    <View style={styles.formField}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
+                            <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
+                            <Input 
+                                style={styles.input} 
+                                type="number"
+                                value={phoneNumber} 
+                                placeholder="Phone Number"
+                                placeholderTextColor="#fff"
+                                placeholderStyle={{fontSize: 10}}
+                                onChangeText={(val) => setphoneNumber(val)}>
+                            </Input>
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row', marginTop: 160}}>
+                        <TouchableOpacity activeOpacity={0.5} style={styles.backHome} onPress={() => navigation.replace('Home')}>
+                            <AntDesign  style={styles.backHomeText} name="arrowleft" size={15} color="white"></AntDesign>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            activeOpacity={0.5}
+                            style={styles.register}
+                            onPress={goToBiz}
+                        >
+                            <Text style={styles.registerText}>Next <AntDesign name="arrowright" size={15}></AntDesign></Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
+                }
+               
 
-                <View style={styles.formField}>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
-                        <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
-                        <Input 
-                            style={styles.input} 
-                            type="number"
-                            value={phoneNumber} 
-                            placeholder="Phone Number"
-                            placeholderTextColor="#fff"
-                            placeholderStyle={{fontSize: 10}}
-                            onChangeText={(val) => setphoneNumber(val)}>
-                        </Input>
-                    </View>
-                </View>
-
-                <View style={{flexDirection: 'row', marginTop: 160}}>
-                    <TouchableOpacity activeOpacity={0.5} style={styles.backHome} onPress={() => navigation.replace('Home')}>
-                        <AntDesign  style={styles.backHomeText} name="arrowleft" size={15} color="white"></AntDesign>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        activeOpacity={0.5}
-                        style={styles.register}
-                        onPress={goToBiz}
-                    >
-                        <Text style={styles.registerText}>Next <AntDesign name="arrowright" size={15}></AntDesign></Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-            }
-
-            {businessInfo 
-            
-            &&
-            <View>
-
-                <Text style={styles.header}>{'Business Information'.toUpperCase()}</Text>
-                <View style={styles.formField}>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
-                        <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
-                        <Input 
-                            style={styles.input} 
-                            type="text"
-                            value={businessName} 
-                            placeholder="Business Name"
-                            placeholderTextColor="#fff"
-                            placeholderStyle={{fontSize: 10}}
-                            onChangeText={(val) => setbusinessName(val)}>
-                        </Input>
-                    </View>
-                </View>
-
-                <View style={styles.formField}>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
-                        <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
-                        <Input 
-                            multiline
-                            style={styles.input} 
-                            type="text"
-                            value={address} 
-                            placeholder="Address"
-                            placeholderTextColor="#fff"
-                            placeholderStyle={{fontSize: 10}}
-                            onChangeText={(val) => setaddress(val)}>
-                        </Input>
-                    </View>
-                </View>
-
-                <View style={styles.formField}>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
-                        <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
-                        <Input 
-                            style={styles.input} 
-                            type="text"
-                            value={city} 
-                            placeholder="City"
-                            placeholderTextColor="#fff"
-                            placeholderStyle={{fontSize: 10}}
-                            onChangeText={(val) => setcity(val)}>
-                        </Input>
-                    </View>
-                </View>
-
-                <View style={styles.formField}>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
-                        <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
-                        <Input 
-                            style={styles.input} 
-                            type="text"
-                            value={state} 
-                            placeholder="State"
-                            placeholderTextColor="#fff"
-                            placeholderStyle={{fontSize: 10}}
-                            onChangeText={(val) => setstate(val)}>
-                        </Input>
-                    </View>
-                </View>
-
-                <View style={{flexDirection: 'row', marginTop: 50}}>
-                    <TouchableOpacity activeOpacity={0.5} style={styles.backHome} onPress={goToPersonal}>
-                        <AntDesign  style={styles.backHomeText} name="arrowleft" size={15} color="white"></AntDesign>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        activeOpacity={0.5}
-                        style={styles.register}
-                        onPress={goToCreate}
-                    >
-                        <Text style={styles.registerText}>Next <AntDesign name="arrowright" size={15}></AntDesign></Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-            }
-
-            {createPin 
+                {businessInfo 
+                
                 &&
-
                 <View>
 
-                <Text style={styles.header}>{'Create your four digit pin'.toUpperCase()}</Text>
-                <View style={styles.formField}>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
-                        <MaterialIcons name="lock" style={styles.inputIcon} color="#4bd1d7"></MaterialIcons>
-                        <Input 
-                            style={styles.input} 
-                            type="number"
-                            value={pin} 
-                            placeholder="Pin"
-                            secureTextEntry
-                            placeholderTextColor="#fff"
-                            placeholderStyle={{fontSize: 10}}
-                            onChangeText={(val) => setpin(val)}>
-                        </Input>
+                    <Text style={styles.header}>{'Business Information'.toUpperCase()}</Text>
+                    <View style={styles.formField}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
+                            <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
+                            <Input 
+                                style={styles.input} 
+                                type="text"
+                                value={businessName} 
+                                placeholder="Business Name"
+                                placeholderTextColor="#fff"
+                                placeholderStyle={{fontSize: 10}}
+                                onChangeText={(val) => setbusinessName(val)}>
+                            </Input>
+                        </View>
+                    </View>
+
+                    <View style={styles.formField}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
+                            <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
+                            <Input 
+                                multiline
+                                style={styles.input} 
+                                type="text"
+                                value={address} 
+                                placeholder="Address"
+                                placeholderTextColor="#fff"
+                                placeholderStyle={{fontSize: 10}}
+                                onChangeText={(val) => setaddress(val)}>
+                            </Input>
+                        </View>
+                    </View>
+
+                    <View style={styles.formField}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
+                            <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
+                            <Input 
+                                style={styles.input} 
+                                type="text"
+                                value={city} 
+                                placeholder="City"
+                                placeholderTextColor="#fff"
+                                placeholderStyle={{fontSize: 10}}
+                                onChangeText={(val) => setcity(val)}>
+                            </Input>
+                        </View>
+                    </View>
+
+                    <View style={styles.formField}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
+                            <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
+                            <Input 
+                                style={styles.input} 
+                                type="text"
+                                value={state} 
+                                placeholder="State"
+                                placeholderTextColor="#fff"
+                                placeholderStyle={{fontSize: 10}}
+                                onChangeText={(val) => setstate(val)}>
+                            </Input>
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row', marginTop: 50}}>
+                        <TouchableOpacity activeOpacity={0.5} style={styles.backHome} onPress={goToPersonal}>
+                            <AntDesign  style={styles.backHomeText} name="arrowleft" size={15} color="white"></AntDesign>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            activeOpacity={0.5}
+                            style={styles.register}
+                            onPress={goToCreate}
+                        >
+                            <Text style={styles.registerText}>Next <AntDesign name="arrowright" size={15}></AntDesign></Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
+                }
 
-                <View style={styles.formField}>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
-                        <MaterialIcons name="lock" style={styles.inputIcon} color="#4bd1d7"></MaterialIcons>
-                        <Input 
-                            style={styles.input} 
-                            type="number"
-                            value={confirmPin} 
-                            placeholder="Confirm Pin"
-                            secureTextEntry
-                            placeholderTextColor="#fff"
-                            placeholderStyle={{fontSize: 10}}
-                            onChangeText={(val) => setconfirmPin(val)}>
-                        </Input>
+                {createPin 
+                    &&
+
+                    <View>
+
+                    <Text style={styles.header}>{'Create your four digit pin'.toUpperCase()}</Text>
+                    <View style={styles.formField}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
+                            <MaterialIcons name="lock" style={styles.inputIcon} color="#4bd1d7"></MaterialIcons>
+                            <Input 
+                                style={styles.input} 
+                                type="number"
+                                value={pin} 
+                                placeholder="Pin"
+                                secureTextEntry
+                                placeholderTextColor="#fff"
+                                placeholderStyle={{fontSize: 10}}
+                                onChangeText={(val) => setpin(val)}>
+                            </Input>
+                        </View>
+                    </View>
+
+                    <View style={styles.formField}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
+                            <MaterialIcons name="lock" style={styles.inputIcon} color="#4bd1d7"></MaterialIcons>
+                            <Input 
+                                style={styles.input} 
+                                type="number"
+                                value={confirmPin} 
+                                placeholder="Confirm Pin"
+                                secureTextEntry
+                                placeholderTextColor="#fff"
+                                placeholderStyle={{fontSize: 10}}
+                                onChangeText={(val) => setconfirmPin(val)}>
+                            </Input>
+                        </View>
+                    </View>
+
+
+                    <View style={{flexDirection: 'row', marginTop: 50}}>
+                        <TouchableOpacity activeOpacity={0.5} style={styles.backHome} onPress={goToBiz}>
+                            <AntDesign  style={styles.backHomeText} name="arrowleft" size={15} color="white"></AntDesign>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            activeOpacity={0.5}
+                            style={styles.register}
+                            onPress={goToLoginDetails}
+                        >
+                            <Text style={styles.registerText}>Next <AntDesign name="arrowright" size={15}></AntDesign></Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>   
+                }
+
+                {loginDetails
+                &&
+                <View>
+                    <Text style={styles.header}>{'Log in details'.toUpperCase()}</Text>
+                    <View style={styles.formField}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
+                            <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
+                            <Input 
+                                style={styles.input} 
+                                type="text"
+                                value={email} 
+                                placeholder="Email"
+                                placeholderTextColor="#fff"
+                                placeholderStyle={{fontSize: 10}}
+                                onChangeText={(val) => setemail(val)}>
+                            </Input>
+                        </View>
+                    </View>
+
+                    <View style={styles.formField}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
+                            <MaterialIcons name="lock" style={styles.inputIcon} color="#4bd1d7"></MaterialIcons>
+                            <Input 
+                                style={styles.input} 
+                                type="password"
+                                value={password} 
+                                placeholder="Password"
+                                secureTextEntry
+                                placeholderTextColor="#fff"
+                                placeholderStyle={{fontSize: 10}}
+                                onChangeText={(val) => setpassword(val)}>
+                            </Input>
+                        </View>
+                    </View>
+
+                    <View style={{flexDirection: 'row', marginLeft: -15, marginTop: 50, justifyContent: 'center'}}>
+                        <Switch value={terms} color="#0c4c4f" onValueChange={((terms) => setterms(terms))}/><Text style={{fontSize: 13, marginTop: 3}}>I have read and accept the terms and conditions</Text>
+                    </View>
+
+                    <View style={{flexDirection: 'row'}}>
+                        <TouchableOpacity activeOpacity={0.5} style={styles.backHome} onPress={goToCreate}>
+                            <AntDesign  style={styles.backHomeText} name="arrowleft" size={15} color="white"></AntDesign>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            activeOpacity={0.5}
+                            style={styles.register}
+                            onPress={submit}
+                        >
+                            <Text style={styles.registerText}>Next <AntDesign name="arrowright" size={15}></AntDesign></Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
+                }
 
-
-                <View style={{flexDirection: 'row', marginTop: 50}}>
-                    <TouchableOpacity activeOpacity={0.5} style={styles.backHome} onPress={goToBiz}>
-                        <AntDesign  style={styles.backHomeText} name="arrowleft" size={15} color="white"></AntDesign>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        activeOpacity={0.5}
-                        style={styles.register}
-                        onPress={goToLoginDetails}
-                    >
-                        <Text style={styles.registerText}>Next <AntDesign name="arrowright" size={15}></AntDesign></Text>
-                    </TouchableOpacity>
-                </View>
-            </View>   
-            }
-
-            {loginDetails
-            &&
-            <View>
-                <Text style={styles.header}>{'Log in details'.toUpperCase()}</Text>
-                <View style={styles.formField}>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
-                        <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
-                        <Input 
-                            style={styles.input} 
-                            type="text"
-                            value={email} 
-                            placeholder="Email"
-                            placeholderTextColor="#fff"
-                            placeholderStyle={{fontSize: 10}}
-                            onChangeText={(val) => setemail(val)}>
-                        </Input>
-                    </View>
-                </View>
-
-                <View style={styles.formField}>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
-                        <MaterialIcons name="lock" style={styles.inputIcon} color="#4bd1d7"></MaterialIcons>
-                        <Input 
-                            style={styles.input} 
-                            type="password"
-                            value={password} 
-                            placeholder="Password"
-                            secureTextEntry
-                            placeholderTextColor="#fff"
-                            placeholderStyle={{fontSize: 10}}
-                            onChangeText={(val) => setpassword(val)}>
-                        </Input>
-                    </View>
-                </View>
-
-                <View style={{flexDirection: 'row', marginTop: 50}}>
-                    <TouchableOpacity activeOpacity={0.5} style={styles.backHome} onPress={goToCreate}>
-                        <AntDesign  style={styles.backHomeText} name="arrowleft" size={15} color="white"></AntDesign>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        activeOpacity={0.5}
-                        style={styles.register}
-                        onPress={submit}
-                    >
-                        <Text style={styles.registerText}>Next <AntDesign name="arrowright" size={15}></AntDesign></Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-            }
-
-            {/* <View style={styles.formField}>
-                <Text style={styles.label}>Email</Text>
-                <Input 
-                    style={styles.input} 
-                    type="email"
-                    value={email} 
-                    onChangeText={(val) => setemail(val)}>
-                </Input>
-            </View>
-
-            <View style={styles.formField}>
-                <Text style={styles.label}>Password</Text>
-                <Input 
-                    style={styles.input} 
-                    type="password"
-                    value={password} 
-                    secureTextEntry
-                    onChangeText={(val) => setpassword(val)}
-                    onSubmitEditing={submit}>
-                </Input>
-            </View> */}
-
-            
-
-            <View style={{height: 100}}></View>
-        </KeyboardAvoidingView>
+                <View style={{height: 100}}></View>
+            </KeyboardAvoidingView>
+        </SafeAreaView>
     );
 
 }
