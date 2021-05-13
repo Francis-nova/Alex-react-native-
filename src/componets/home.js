@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { ImageBackground } from 'react-native';
 import { StyleSheet, Text, View} from 'react-native'
 import { TouchableOpacity } from 'react-native';
@@ -10,6 +10,12 @@ import img3 from '../img/img3.jpg'
 
 
   const HomeScreen = ({navigation}) => {
+      useLayoutEffect(() => {
+          navigation.setOptions({
+            title: 'My App'
+          })
+          
+      }, [navigation])
     
     return (
       <View style={{
@@ -31,11 +37,11 @@ import img3 from '../img/img3.jpg'
             
           </ImageBackground>
           <ImageBackground style={[styles.slide]} source={img1}>
-            {/* <View level={10}><Text style={styles.text}>Page 2</Text></View> */}
+            <View style={styles.opac}></View>
             
           </ImageBackground>
           <ImageBackground style={[styles.slide]} source={img3}>
-            {/* <View level={10}><Text style={styles.text}>Page 3</Text></View> */}
+            <View style={styles.opac}></View>
           </ImageBackground>
         </AppIntro>
       </View>

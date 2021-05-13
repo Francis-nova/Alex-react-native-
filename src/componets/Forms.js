@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import {  View, Text, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { Input } from 'react-native-elements';
 
 const FormsScreen = ({navigation}) => {
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: 'Register'
+        })
+       
+    }, [navigation])
+
     const [firstName, setfirstName] = useState('');
     const [lastName, setlastName] = useState('');
     const [email, setemail] = useState('');
@@ -21,7 +28,7 @@ const FormsScreen = ({navigation}) => {
     
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
-            <Text style={styles.header}>{'Register'.toUpperCase()}</Text>
+            {/* <Text style={styles.header}>{'Register'.toUpperCase()}</Text> */}
             <View style={styles.formField}>
                 <Text style={styles.label}>First Name</Text>
                 <Input 
@@ -91,19 +98,19 @@ const styles = StyleSheet.create({
     },
     formField: {
         marginTop: 40,
-    
+        width: 300
     },
     input: {
         borderBottomWidth: 1,
-        borderColor: '#ddd',
+        borderColor: '#fff',
         paddingVertical: 5,
         paddingHorizontal: 10,
-        width: '100%',
-        marginLeft: -10
     },
     label: {
-        color: '#f0a9c9',
+        color: '#fff',
         fontSize: 13,
+        marginLeft: 10
+        
     },
     register: {
         backgroundColor: "#fff",
@@ -112,7 +119,8 @@ const styles = StyleSheet.create({
         marginTop: 50,
         marginBottom: 10,
         borderRadius: 5,
-        width: '38%'
+        width: '38%',
+        marginLeft: 10
         
     }
 
