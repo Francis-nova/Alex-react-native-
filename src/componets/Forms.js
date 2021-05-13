@@ -39,27 +39,35 @@ const FormsScreen = ({navigation}) => {
             email,
             password
         }
-        alert(details.firstName, details.lastName)
+        alert(details.lastName, details.email)
         navigation.replace('Dashboard')
     };
     const goToPersonal = () => {
         setpersonalDetails(true);
         setbusinessInfo(false);
+        setcreatePin(false);
+        setloginDetails(false)
     }
 
     const goToBiz = () => {
         setpersonalDetails(false);
         setbusinessInfo(true);
+        setcreatePin(false);
+        setloginDetails(false);
     }
 
     const goToCreate = () => {
         setbusinessInfo(false);
         setcreatePin(true);
+        setloginDetails(false);
+        setpersonalDetails(false);
     }
 
     const goToLoginDetails = () => {
         setcreatePin(false);
         setloginDetails(true);
+        setbusinessInfo(false);
+        setpersonalDetails(false);
     }
     
     return (
@@ -206,7 +214,7 @@ const FormsScreen = ({navigation}) => {
                 <Text style={styles.header}>{'Create your four digit pin'.toUpperCase()}</Text>
                 <View style={styles.formField}>
                     <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
-                        <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
+                        <MaterialIcons name="lock" style={styles.inputIcon} color="#4bd1d7"></MaterialIcons>
                         <Input 
                             style={styles.input} 
                             type="number"
@@ -222,12 +230,12 @@ const FormsScreen = ({navigation}) => {
 
                 <View style={styles.formField}>
                     <View style={{flexDirection: 'row', justifyContent: 'center', textAlign: 'center'}}>
-                        <Ionicons name="person" style={styles.inputIcon} color="#4bd1d7"></Ionicons>
+                        <MaterialIcons name="lock" style={styles.inputIcon} color="#4bd1d7"></MaterialIcons>
                         <Input 
                             style={styles.input} 
                             type="number"
                             value={confirmPin} 
-                            placeholder="Address"
+                            placeholder="Confirm Pin"
                             secureTextEntry
                             placeholderTextColor="#fff"
                             placeholderStyle={{fontSize: 10}}
@@ -285,6 +293,19 @@ const FormsScreen = ({navigation}) => {
                             onChangeText={(val) => setpassword(val)}>
                         </Input>
                     </View>
+                </View>
+
+                <View style={{flexDirection: 'row', marginTop: 50}}>
+                    <TouchableOpacity activeOpacity={0.5} style={styles.backHome} onPress={goToCreate}>
+                        <AntDesign  style={styles.backHomeText} name="arrowleft" size={15} color="white"></AntDesign>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        activeOpacity={0.5}
+                        style={styles.register}
+                        onPress={submit}
+                    >
+                        <Text style={styles.registerText}>Next <AntDesign name="arrowright" size={15}></AntDesign></Text>
+                    </TouchableOpacity>
                 </View>
             </View>
             }
