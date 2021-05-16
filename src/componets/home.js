@@ -1,12 +1,13 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect } from 'react';
 import { ImageBackground } from 'react-native';
 import { StyleSheet, Text, View} from 'react-native'
 import { TouchableOpacity } from 'react-native';
-import {AntDesign} from '@expo/vector-icons'
-import AppIntro from 'rn-falcon-app-intro';
-import img1 from '../img/img1.jpg'
-import img2 from '../img/img2.jpg'
-import img3 from '../img/img3.jpg'
+import { AntDesign } from '@expo/vector-icons'
+// import AppIntro from 'rn-falcon-app-intro';
+import img1 from '../img/img1.jpg';
+import img2 from '../img/img2.jpg';
+import img3 from '../img/img3.jpg';
+import Fetch from './Fetch';
 
 
   const HomeScreen = ({navigation}) => {
@@ -31,7 +32,7 @@ import img3 from '../img/img3.jpg'
         <TouchableOpacity activeOpacity={0.5} style={styles.register} onPress={() => navigation.navigate("Form")}>
           <Text style={styles.registerText}>Register <AntDesign name="arrowright" color='white' size={20}></AntDesign> </Text>
         </TouchableOpacity>
-        <AppIntro showSkipButton={false} showDoneButton={false} activeDotColor="#4bd1d7">
+        {/* <AppIntro showSkipButton={false} showDoneButton={false} activeDotColor="#4bd1d7">
           <ImageBackground style={[styles.slide]} source={img2}>
             <View style={styles.opac}></View>
             
@@ -43,7 +44,8 @@ import img3 from '../img/img3.jpg'
           <ImageBackground style={[styles.slide]} source={img3}>
             <View style={styles.opac}></View>
           </ImageBackground>
-        </AppIntro>
+        </AppIntro> */}
+        <Fetch></Fetch>
       </View>
       
 
