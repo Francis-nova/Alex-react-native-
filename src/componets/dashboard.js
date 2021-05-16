@@ -1,13 +1,15 @@
 import React from 'react';
 import { ImageBackground } from 'react-native';
 import {  View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { color } from 'react-native-reanimated';
+import { ScrollView } from 'react-native';
+import { color } from 'react-native';
 import img from '../img/vincent.jpg'
+import Fetch from './Fetch'
 
-const Dashboard = ({navigation}) => {
+const Dashboard = ({navigation} ) => {
     
     return ( 
-        <View>
+        <ScrollView>
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Text style={styles.headerText}>{'Dashboard'.toUpperCase()}</Text>
@@ -48,8 +50,12 @@ const Dashboard = ({navigation}) => {
                         </View>
                     </ImageBackground>
                 </View>
+                <View style={{backgroundColor: '#fff', padding: 20}}>
+                    <Text style={{fontSize: 20, fontWeight: 'bold', marginBottom: 10}}>{'Beneficiaries'.toUpperCase()}</Text>
+                    <Fetch></Fetch>
+                </View>
             </View>
-        </View>
+        </ScrollView>
         );
 
 }

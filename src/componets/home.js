@@ -3,11 +3,10 @@ import { ImageBackground } from 'react-native';
 import { StyleSheet, Text, View} from 'react-native'
 import { TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'
-// import AppIntro from 'rn-falcon-app-intro';
+import AppIntro from 'rn-falcon-app-intro';
 import img1 from '../img/img1.jpg';
 import img2 from '../img/img2.jpg';
 import img3 from '../img/img3.jpg';
-import Fetch from './Fetch';
 
 
   const HomeScreen = ({navigation}) => {
@@ -32,7 +31,7 @@ import Fetch from './Fetch';
         <TouchableOpacity activeOpacity={0.5} style={styles.register} onPress={() => navigation.navigate("Form")}>
           <Text style={styles.registerText}>Register <AntDesign name="arrowright" color='white' size={20}></AntDesign> </Text>
         </TouchableOpacity>
-        {/* <AppIntro showSkipButton={false} showDoneButton={false} activeDotColor="#4bd1d7">
+        <AppIntro showSkipButton={false} showDoneButton={false} activeDotColor="#4bd1d7">
           <ImageBackground style={[styles.slide]} source={img2}>
             <View style={styles.opac}></View>
             
@@ -44,8 +43,7 @@ import Fetch from './Fetch';
           <ImageBackground style={[styles.slide]} source={img3}>
             <View style={styles.opac}></View>
           </ImageBackground>
-        </AppIntro> */}
-        <Fetch></Fetch>
+        </AppIntro>
       </View>
       
 
@@ -59,7 +57,6 @@ import Fetch from './Fetch';
     slide: {
       flex: 1,
       justifyContent: 'center',
-      // padding: 15,
       resizeMode: "cover",
     },
     text: {
@@ -109,4 +106,3 @@ import Fetch from './Fetch';
       height: '100%'
     }
   });
-  // AppRegistry.registerComponent('MyCarousel', () => MyCarousel);
