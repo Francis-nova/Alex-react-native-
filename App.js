@@ -10,6 +10,7 @@ import UsersScreen from './src/componets/users';
 import Dashboard from './src/componets/dashboard';
 import Profile from './src/componets/Profile';
 
+import getStarted from './src/componets/get-started';
 
 const AppNavigator = createStackNavigator({
   Home: {
@@ -20,7 +21,8 @@ const AppNavigator = createStackNavigator({
   },
   FormsScreen: FormsScreen,
   Dashboard: Dashboard,
-  Profile: Profile
+  Profile: Profile,
+  getStarted: getStarted
 });
 
 export default createAppContainer(AppNavigator);

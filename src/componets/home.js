@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 
-const image = {uri: 'https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80'}
+const image = { uri: 'https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80' }
 
 class HomeScreen extends React.Component {
 
@@ -25,8 +25,8 @@ class HomeScreen extends React.Component {
                     <Text style={styles.caption}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, doloribus.</Text>
                     <TouchableOpacity
                         style={styles.formsButton}
-                        onPress={() => this.props.navigation.navigate('FormsScreen')}>
-                        <Text>Register</Text>
+                        onPress={() => this.props.navigation.navigate('getStarted')}>
+                        <Text>Get Started</Text>
                     </TouchableOpacity>
 
                 </ImageBackground>
