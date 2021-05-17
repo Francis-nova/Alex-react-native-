@@ -2,11 +2,18 @@ import React from 'react';
 import { ImageBackground } from 'react-native';
 import {  View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native';
-import { color } from 'react-native';
-import img from '../img/vincent.jpg'
-import Fetch from './Fetch'
+import { FlatList } from 'react-native';
+import img from '../img/vincent.jpg';
+import { AntDesign } from '@expo/vector-icons';
+import useFetch from './useFetch';
 
 const Dashboard = ({navigation} ) => {
+
+    const {error, loading, data} = useFetch();
+
+    const viewItem = (id) => {
+        var id = id;
+    }
     
     return ( 
         <ScrollView>
@@ -38,7 +45,7 @@ const Dashboard = ({navigation} ) => {
                             <View style={styles.cardDetail}>
                                 <View>
                                     <Text style={styles.cardBalance}>Card Balance</Text>
-                                    <Text style={styles.cardAmount}>$9,324</Text>
+                                    <Text style={styles.cardAmount}>$9,322</Text>
                                 </View>
                                 <View>
                                     <Text style={styles.companyName}>Company Name</Text>
@@ -52,7 +59,25 @@ const Dashboard = ({navigation} ) => {
                 </View>
                 <View style={{backgroundColor: '#fff', padding: 20}}>
                     <Text style={{fontSize: 20, fontWeight: 'bold', marginBottom: 10}}>{'Beneficiaries'.toUpperCase()}</Text>
-                    <Fetch></Fetch>
+                    <FlatList 
+                        numColumns={2}
+                        keyExtractor={(item) => item.id}
+                        data={data}
+                        renderItem={({item}) => (
+                            <TouchableOpacity activeOpacity={0.5} onPress={() => navigation.navigate('BenDetails', {item})}>
+                                <View style={styles.beneficiaries}>
+                                    <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                                        <Text style={{fontSize: 10}}>{`${item.owner.title}`.toUpperCase()} {item.owner.firstName} {item.owner.lastName}</Text>
+                                        <AntDesign name="edit" size={10} color='#4bd1d7' onPress={() => navigation.navigate('BenDetails', item)}></AntDesign>
+                                    </View>
+                                    <Text style={{fontSize: 10, color: '#888', marginTop: 10}}>{item.owner.email}</Text>
+                                    <Text style={{fontSize: 10, color: '#888', marginTop: 10}}>Ref ID: <Text style={{fontSize: 8, color: '#555'}}>{item.owner.id}</Text></Text>
+                                </View>
+
+                            </TouchableOpacity>
+                        )}
+                    >
+                    </FlatList>
                 </View>
             </View>
         </ScrollView>
@@ -139,6 +164,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,.8)',
         padding: 20,
         height: '100%'
+    },
+    beneficiaries: {
+        backgroundColor: '#eee',
+        padding: 10,
+        margin: 10,
+        marginLeft: 0,
+        textTransform: 'capitalize',
+        width: 170,
+        height: 100
     }
 });
  

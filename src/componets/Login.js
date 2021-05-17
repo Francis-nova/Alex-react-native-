@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#fff',
         fontWeight: 'normal',
+        fontFamily: 'OpenSans'
     },
     formField: {
         marginTop: 40,
